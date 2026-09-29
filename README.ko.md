@@ -8,12 +8,23 @@ Claude Code와 Codex CLI의 **기존 세션을 지정한 시각에 다시 실행
 
 ## 먼저 실행해 보기
 
-소스의 `README.md`와 `pyproject.toml`이 있는 폴더에서 실행합니다. Python 3.11 이상이 필요합니다.
+준비물은 **Python 3.11 이상과 pip**, 그리고 아래 clone 명령에 사용할 **Git**입니다. 모의 데모에는 Claude·Codex 설치나 AI 계정이 필요하지 않습니다.
+
+처음 내려받는 경우, 프로젝트를 저장할 상위 폴더에서 PowerShell을 열고 순서대로 실행하세요.
 
 ```powershell
+git clone https://github.com/subeom7/ai-wakeup.git
+cd ai-wakeup
 py -m pip install .
 py -m ai_wakeup demo
+py -m ai_wakeup --help
 ```
+
+`pip install .`의 `.`은 **현재 폴더의 프로젝트를 설치한다**는 뜻입니다. 소스를 내려받는 명령이 아니므로, `README.md`와 `pyproject.toml`이 있는 `ai-wakeup` 폴더로 먼저 이동해야 합니다.
+
+**이미 clone했다면** 해당 폴더에서 `py -m pip install .`부터 실행하세요. 기존 폴더 안에 다시 clone할 필요는 없습니다. **Git 없이 설치하려면** 이 저장소의 **Code → Download ZIP**으로 내려받아 압축을 풀고, `pyproject.toml`이 있는 폴더에서 터미널을 여세요. 위의 `git clone`과 `cd ai-wakeup` 두 줄을 건너뛰고 설치·데모·도움말 명령부터 실행하면 됩니다.
+
+Linux/macOS에서는 `py` 대신 `python3`를 사용하세요. 설치 없이 소스 폴더에서 모듈을 직접 실행할 수도 있습니다.
 
 `demo`는 **가짜 에이전트로 실행 흐름만 검증**합니다. API 요청, 사용량 소모, 실제 프로젝트 변경은 하지 않습니다. 설치 없이 소스 폴더에서 `py -m ai_wakeup demo`를 실행해도 됩니다.
 
