@@ -27,13 +27,21 @@ Python **3.11+**, with **no third-party runtime dependencies**. Packaging uses s
 
 ## Install and try without an AI account
 
-From the repository / extracted source directory:
+Prerequisites: **Python 3.11+ with pip**, and **Git** for the clone command below. Neither Codex nor Claude needs to be installed for the simulated demo.
+
+For a first-time checkout, open PowerShell in the parent folder where you want to download the project, then run:
 
 ```powershell
-py -m pip install .
-py -m ai_wakeup demo
-py -m ai_wakeup --help
+ git clone https://github.com/subeom7/ai-wakeup.git
+ cd ai-wakeup
+ py -m pip install .
+ py -m ai_wakeup demo
+ py -m ai_wakeup --help
 ```
+
+The `.` in `pip install .` means **the current local project directory**, not a package downloaded by name. Run it from the `ai-wakeup` folder containing `pyproject.toml` and `README.md`.
+
+**Already cloned?** Open a terminal in that folder and start with `py -m pip install .`; do not clone again inside the existing checkout. **Without Git?** Use this repository's **Code → Download ZIP**, extract it, and open a terminal in the extracted folder containing `pyproject.toml`. Skip the `git clone` and `cd ai-wakeup` lines, then run the install/demo/help commands above.
 
 On Linux/macOS use `python3` instead of `py`. An `ai-wakeup` command is also installed, but `py -m ai_wakeup` avoids Windows Scripts/PATH confusion. The module can also run directly from the source root without installing it.
 
