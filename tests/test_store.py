@@ -5,6 +5,7 @@ import uuid
 from dataclasses import replace
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 
 from ai_wakeup.core import JobSpec, WakeupError
 from ai_wakeup.store import Store
@@ -110,6 +111,7 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(self.store.meta("example"),{"test":True})
 
     def test_schema_newer_is_rejected(self):
-        with self.store.connect() as con:
+        # sqlite3 context managers end transactions but do not close handles.
+        with closing(self.store.connect()) as con:
             con.execute("PRAGMA user_version=999")
         with self.assertRaises(WakeupError): Store(self.home)

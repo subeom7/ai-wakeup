@@ -6,7 +6,7 @@ An explicit, local scheduler for resuming an existing **Codex CLI** or **Claude 
 
 [한국어 안내](README.ko.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation](docs/VALIDATION.md) · [Roadmap](docs/ROADMAP.md)
 
-> **0.1.0a1 — experimental alpha.** This is a working scheduled-resume implementation, **not yet a drop-in replacement for unsnooze**. The first schedule requires a user-supplied session UUID and time. It does not automatically discover already-open sessions or infer their reset timestamps. Automated tests use simulated agents; authenticated provider runs and Windows/macOS execution still need validation. No guarantee of uninterrupted or complete work is made.
+> **0.1.0a1 — experimental alpha.** This is a working scheduled-resume implementation, **not yet a drop-in replacement for unsnooze**. The first schedule requires a user-supplied session UUID and time. It does not automatically discover already-open sessions or infer their reset timestamps. Automated tests use simulated agents; consult the repository CI for hosted-platform results. Authenticated provider runs and end-user terminal-lifecycle behavior still need validation. No guarantee of uninterrupted or complete work is made.
 
 ## What is implemented
 
@@ -143,7 +143,7 @@ py -m unittest discover -s tests -v
 py -m ai_wakeup demo
 ```
 
-The included GitHub Actions workflow defines Linux, Windows, and macOS jobs on Python 3.11 and 3.13. **A workflow definition is not a passed CI run.** See [the validation record](docs/VALIDATION.md) for what was actually executed in the source-generation environment.
+The included GitHub Actions workflow runs Linux, Windows, and macOS jobs on Python 3.11 and 3.13. See [Actions](https://github.com/subeom7/ai-wakeup/actions/workflows/ci.yml) for actual per-commit results and [the validation record](docs/VALIDATION.md) for the original local checks and repository setup follow-up. **Passing simulated CI is not authenticated provider validation.**
 
 ## Upstream interfaces
 

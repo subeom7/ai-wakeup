@@ -51,7 +51,8 @@ class WorkerTests(unittest.TestCase):
         log=self.store.home/"logs"/(updated["log_base"]+".stdout.jsonl")
         events=[json.loads(line) for line in log.read_text(encoding="utf-8").splitlines()]
         item=next(e["item"] for e in events if e["type"]=="item.completed")
-        self.assertEqual(Path(item["cwd"]),self.project)
+        # macOS may spell the same temporary directory as /var or /private/var.
+        self.assertTrue(Path(item["cwd"]).samefile(self.project))
         self.assertEqual(item["stdin"].strip(),Store.spec(job).prompt)
 
     def test_real_child_claude_success(self):

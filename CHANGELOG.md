@@ -11,4 +11,6 @@ Initial independently written scheduled-resume alpha.
 - Per-attempt private local logs, CLI executable diagnostics, and credential-free simulation.
 - English/Korean documentation, MIT license, security boundaries, and multi-OS CI definition.
 
-Automatic discovery of external sessions, reset-time extraction, hooks/wrappers, native desktop UI, and login services are not included. Live-provider and Windows/macOS execution validation remain outstanding.
+Automatic discovery of external sessions, reset-time extraction, hooks/wrappers, native desktop UI, and login services are not included. Live-provider and end-user desktop lifecycle validation remain outstanding; hosted-runner results are tracked in GitHub Actions.
+
+Repository setup follow-up: explicitly close the SQLite test fixture on Windows and compare working-directory identity rather than path spelling on macOS. Runtime behavior and the 82-test suite are preserved.

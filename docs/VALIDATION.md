@@ -2,6 +2,8 @@
 
 Recorded on 2026-09-29 while preparing the initial source snapshot.
 
+The sections below through **Next acceptance test** are the historical source-generation record. For repository/CI follow-up, see the final section and the linked Actions runs.
+
 ## Actually executed
 
 Environment: **Linux, Python 3.13.5**.
@@ -38,3 +40,16 @@ The generated tests verify this implementation against documented/simulated even
 ## Next acceptance test
 
 Use a disposable git worktree and a noncritical saved session. Record OS, Python version, `codex --version` / `claude --version`, the preview, exit state, and sanitized logs. Start with a read/plan-only request. Verify a small permitted edit separately. Only after those pass, test a real rate-limit-reset cycle. Keep competing supervisors disabled for that session. Do not publish raw credentials, session transcripts, or sensitive paths.
+
+## Repository setup follow-up — 2026-09-29
+
+The initial import commit `c9175d7518cf541c8ef9016b311bf3930e2f83e1` preserved all 31 files from the provided ZIP byte-for-byte (Git tree `1b172f0f96ac02fa6b9ca77314e98f14797d2520`). Local Linux/Python 3.13.5 reruns also passed all 82 tests.
+
+The [first PR CI run](https://github.com/subeom7/ai-wakeup/actions/runs/36575862441) passed both Ubuntu jobs and exposed two test-fixture portability issues on the other runners:
+
+- Windows: the schema-version test left its own SQLite connection open, blocking temporary-directory cleanup. The fixture now closes it explicitly; production ledger connections already used explicit closing.
+- macOS: the successful child-process test compared path spelling rather than directory identity (`/var` versus `/private/var`). It now verifies `samefile`, keeping the working-directory assertion in place.
+
+These fixes do not change runtime behavior, remove tests, or add skips. The complete suite still contains 82 tests. See [PR #1](https://github.com/subeom7/ai-wakeup/pull/1) and the [Actions history](https://github.com/subeom7/ai-wakeup/actions/workflows/ci.yml) for the result attached to each subsequent commit; the failed initial run is retained as evidence.
+
+Hosted CI exercises local simulated child processes and package installation. It does not validate authenticated Claude/Codex execution, a real subscription reset, the user's Windows Terminal configuration, or effective provider permissions. No GitHub release or PyPI package is published by this setup.
